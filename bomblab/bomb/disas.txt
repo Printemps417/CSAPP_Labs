@@ -1,0 +1,249 @@
+(gdb) disas read_line
+Dump of assembler code for function read_line:
+   0x000000000040149e <+0>:     sub    $0x8,%rsp
+   0x00000000004014a2 <+4>:     mov    $0x0,%eax
+   0x00000000004014a7 <+9>:     callq  0x4013f9 <skip>
+   0x00000000004014ac <+14>:    test   %rax,%rax
+   0x00000000004014af <+17>:    jne    0x40151f <read_line+129>
+   0x00000000004014b1 <+19>:    mov    0x202290(%rip),%rax        # 0x603748 <stdin@@GLIBC_2.2.5>
+   0x00000000004014b8 <+26>:    cmp    %rax,0x2022a9(%rip)        # 0x603768 <infile>
+   0x00000000004014bf <+33>:    jne    0x4014d5 <read_line+55>
+   0x00000000004014c1 <+35>:    mov    $0x4025d5,%edi
+   0x00000000004014c6 <+40>:    callq  0x400b10 <puts@plt>
+   0x00000000004014cb <+45>:    mov    $0x8,%edi
+   0x00000000004014d0 <+50>:    callq  0x400c20 <exit@plt>
+   0x00000000004014d5 <+55>:    mov    $0x4025f3,%edi
+   0x00000000004014da <+60>:    callq  0x400ae0 <getenv@plt>
+   0x00000000004014df <+65>:    test   %rax,%rax
+   0x00000000004014e2 <+68>:    je     0x4014ee <read_line+80>
+   0x00000000004014e4 <+70>:    mov    $0x0,%edi
+   0x00000000004014e9 <+75>:    callq  0x400c20 <exit@plt>
+   0x00000000004014ee <+80>:    mov    0x202253(%rip),%rax        # 0x603748 <stdin@@GLIBC_2.2.5>
+   0x00000000004014f5 <+87>:    mov    %rax,0x20226c(%rip)        # 0x603768 <infile>
+   0x00000000004014fc <+94>:    mov    $0x0,%eax
+   0x0000000000401501 <+99>:    callq  0x4013f9 <skip>
+   0x0000000000401506 <+104>:   test   %rax,%rax
+   0x0000000000401509 <+107>:   jne    0x40151f <read_line+129>
+   0x000000000040150b <+109>:   mov    $0x4025d5,%edi
+   0x0000000000401510 <+114>:   callq  0x400b10 <puts@plt>
+   0x0000000000401515 <+119>:   mov    $0x0,%edi
+   0x000000000040151a <+124>:   callq  0x400c20 <exit@plt>
+   0x000000000040151f <+129>:   mov    0x20223b(%rip),%edx        # 0x603760 <num_input_strings>
+   0x0000000000401525 <+135>:   movslq %edx,%rax
+   0x0000000000401528 <+138>:   lea    (%rax,%rax,4),%rsi
+   0x000000000040152c <+142>:   shl    $0x4,%rsi
+   0x0000000000401530 <+146>:   add    $0x603780,%rsi
+   0x0000000000401537 <+153>:   mov    %rsi,%rdi
+   0x000000000040153a <+156>:   mov    $0x0,%eax
+   0x000000000040153f <+161>:   mov    $0xffffffffffffffff,%rcx
+   0x0000000000401546 <+168>:   repnz scas %es:(%rdi),%al
+   0x0000000000401548 <+170>:   not    %rcx
+   0x000000000040154b <+173>:   sub    $0x1,%rcx
+   0x000000000040154f <+177>:   cmp    $0x4e,%ecx
+   0x0000000000401552 <+180>:   jle    0x40159a <read_line+252>
+   0x0000000000401554 <+182>:   mov    $0x4025fe,%edi
+   0x0000000000401559 <+187>:   callq  0x400b10 <puts@plt>
+   0x000000000040155e <+192>:   mov    0x2021fc(%rip),%eax        # 0x603760 <num_input_strings>
+   0x0000000000401564 <+198>:   lea    0x1(%rax),%edx
+   0x0000000000401567 <+201>:   mov    %edx,0x2021f3(%rip)        # 0x603760 <num_input_strings>
+   0x000000000040156d <+207>:   cltq   
+   0x000000000040156f <+209>:   imul   $0x50,%rax,%rax
+   0x0000000000401573 <+213>:   movabs $0x636e7572742a2a2a,%rdi
+   0x000000000040157d <+223>:   mov    %rdi,0x603780(%rax)
+   0x0000000000401584 <+230>:   movabs $0x2a2a2a64657461,%rdi
+   0x000000000040158e <+240>:   mov    %rdi,0x603788(%rax)
+   0x0000000000401595 <+247>:   callq  0x40143a <explode_bomb>
+   0x000000000040159a <+252>:   sub    $0x1,%ecx
+   0x000000000040159d <+255>:   movslq %ecx,%rcx
+   0x00000000004015a0 <+258>:   movslq %edx,%rax
+   0x00000000004015a3 <+261>:   lea    (%rax,%rax,4),%rax
+   0x00000000004015a7 <+265>:   shl    $0x4,%rax
+   0x00000000004015ab <+269>:   movb   $0x0,0x603780(%rcx,%rax,1)
+   0x00000000004015b3 <+277>:   add    $0x1,%edx
+   0x00000000004015b6 <+280>:   mov    %edx,0x2021a4(%rip)        # 0x603760 <num_input_strings>
+   0x00000000004015bc <+286>:   mov    %rsi,%rax
+   0x00000000004015bf <+289>:   add    $0x8,%rsp
+   0x00000000004015c3 <+293>:   retq   
+End of assembler dump.
+
+(gdb) disas strings_not_equal
+Dump of assembler code for function strings_not_equal:
+   0x0000000000401338 <+0>:     push   %r12
+   0x000000000040133a <+2>:     push   %rbp
+   0x000000000040133b <+3>:     push   %rbx
+   0x000000000040133c <+4>:     mov    %rdi,%rbx
+   0x000000000040133f <+7>:     mov    %rsi,%rbp
+   0x0000000000401342 <+10>:    callq  0x40131b <string_length>
+   0x0000000000401347 <+15>:    mov    %eax,%r12d
+   0x000000000040134a <+18>:    mov    %rbp,%rdi
+   0x000000000040134d <+21>:    callq  0x40131b <string_length>
+   0x0000000000401352 <+26>:    mov    $0x1,%edx
+   0x0000000000401357 <+31>:    cmp    %eax,%r12d
+   0x000000000040135a <+34>:    jne    0x40139b <strings_not_equal+99>
+   0x000000000040135c <+36>:    movzbl (%rbx),%eax
+   0x000000000040135f <+39>:    test   %al,%al
+   0x0000000000401361 <+41>:    je     0x401388 <strings_not_equal+80>
+   0x0000000000401363 <+43>:    cmp    0x0(%rbp),%al
+   0x0000000000401366 <+46>:    je     0x401372 <strings_not_equal+58>
+   0x0000000000401368 <+48>:    jmp    0x40138f <strings_not_equal+87>
+   0x000000000040136a <+50>:    cmp    0x0(%rbp),%al
+   0x000000000040136d <+53>:    nopl   (%rax)
+   0x0000000000401370 <+56>:    jne    0x401396 <strings_not_equal+94>
+   0x0000000000401372 <+58>:    add    $0x1,%rbx
+   0x0000000000401376 <+62>:    add    $0x1,%rbp
+   0x000000000040137a <+66>:    movzbl (%rbx),%eax
+   0x000000000040137d <+69>:    test   %al,%al
+   0x000000000040137f <+71>:    jne    0x40136a <strings_not_equal+50>
+   0x0000000000401381 <+73>:    mov    $0x0,%edx
+   0x0000000000401386 <+78>:    jmp    0x40139b <strings_not_equal+99>
+   0x0000000000401388 <+80>:    mov    $0x0,%edx
+   0x000000000040138d <+85>:    jmp    0x40139b <strings_not_equal+99>
+   0x000000000040138f <+87>:    mov    $0x1,%edx
+   0x0000000000401394 <+92>:    jmp    0x40139b <strings_not_equal+99>
+   0x0000000000401396 <+94>:    mov    $0x1,%edx
+   0x000000000040139b <+99>:    mov    %edx,%eax
+   0x000000000040139d <+101>:   pop    %rbx
+   0x000000000040139e <+102>:   pop    %rbp
+   0x000000000040139f <+103>:   pop    %r12
+   0x00000000004013a1 <+105>:   retq   
+End of assembler dump.
+
+
+
+(gdb) disas phase_1
+Dump of assembler code for function phase_1:
+   0x0000000000400ee0 <+0>:     sub    $0x8,%rsp
+   0x0000000000400ee4 <+4>:     mov    $0x402400,%esi
+   0x0000000000400ee9 <+9>:     callq  0x401338 <strings_not_equal>
+   0x0000000000400eee <+14>:    test   %eax,%eax
+   0x0000000000400ef0 <+16>:    je     0x400ef7 <phase_1+23>
+   0x0000000000400ef2 <+18>:    callq  0x40143a <explode_bomb>
+   0x0000000000400ef7 <+23>:    add    $0x8,%rsp
+   0x0000000000400efb <+27>:    retq   
+End of assembler dump.
+
+
+(gdb) disas phase_2
+Dump of assembler code for function phase_2:
+   0x0000000000400efc <+0>:     push   %rbp
+   0x0000000000400efd <+1>:     push   %rbx
+   0x0000000000400efe <+2>:     sub    $0x28,%rsp
+   0x0000000000400f02 <+6>:     mov    %rsp,%rsi
+   0x0000000000400f05 <+9>:     callq  0x40145c <read_six_numbers>
+   0x0000000000400f0a <+14>:    cmpl   $0x1,(%rsp)
+   0x0000000000400f0e <+18>:    je     0x400f30 <phase_2+52>
+   0x0000000000400f10 <+20>:    callq  0x40143a <explode_bomb>
+   0x0000000000400f15 <+25>:    jmp    0x400f30 <phase_2+52>
+
+   开始循环
+   把rsp的第一个数给eax了。然后eax翻倍
+   0x0000000000400f17 <+27>:    mov    -0x4(%rbx),%eax
+   0x0000000000400f1a <+30>:    add    %eax,%eax
+   0x0000000000400f1c <+32>:    cmp    %eax,(%rbx)
+   0x0000000000400f1e <+34>:    je     0x400f25 <phase_2+41>
+   0x0000000000400f20 <+36>:    callq  0x40143a <explode_bomb>
+   rbx上移，得到下一个输入后，和rbp中的值比较一次
+   0x0000000000400f25 <+41>:    add    $0x4,%rbx
+   0x0000000000400f29 <+45>:    cmp    %rbp,%rbx
+   0x0000000000400f2c <+48>:    jne    0x400f17 <phase_2+27>
+   0x0000000000400f2e <+50>:    jmp    0x400f3c <phase_2+64>
+
+   0x0000000000400f30 <+52>:    lea    0x4(%rsp),%rbx
+   0x0000000000400f35 <+57>:    lea    0x18(%rsp),%rbp
+   0x0000000000400f3a <+62>:    jmp    0x400f17 <phase_2+27>
+
+   退出循环
+   0x0000000000400f3c <+64>:    add    $0x28,%rsp
+   0x0000000000400f40 <+68>:    pop    %rbx
+   0x0000000000400f41 <+69>:    pop    %rbp
+   0x0000000000400f42 <+70>:    retq   
+
+炸弹3
+   Dump of assembler code for function phase_3:
+   0x0000000000400f43 <+0>:     sub    $0x18,%rsp
+   0x0000000000400f47 <+4>:     lea    0xc(%rsp),%rcx
+   0x0000000000400f4c <+9>:     lea    0x8(%rsp),%rdx
+   0x0000000000400f51 <+14>:    mov    $0x4025cf,%esi
+   0x0000000000400f56 <+19>:    mov    $0x0,%eax
+   0x0000000000400f5b <+24>:    callq  0x400bf0 <__isoc99_sscanf@plt>
+   0x0000000000400f60 <+29>:    cmp    $0x1,%eax
+   0x0000000000400f63 <+32>:    jg     0x400f6a <phase_3+39>
+   0x0000000000400f65 <+34>:    callq  0x40143a <explode_bomb>
+   0x0000000000400f6a <+39>:    cmpl   $0x7,0x8(%rsp)
+   0x0000000000400f6f <+44>:    ja     0x400fad <phase_3+106>
+   0x0000000000400f71 <+46>:    mov    0x8(%rsp),%eax
+   0x0000000000400f75 <+50>:    jmpq   *0x402470(,%rax,8)
+   0x0000000000400f7c <+57>:    mov    $0xcf,%eax
+   0x0000000000400f81 <+62>:    jmp    0x400fbe <phase_3+123>
+   0x0000000000400f83 <+64>:    mov    $0x2c3,%eax
+   0x0000000000400f88 <+69>:    jmp    0x400fbe <phase_3+123>
+   0x0000000000400f8a <+71>:    mov    $0x100,%eax
+   0x0000000000400f8f <+76>:    jmp    0x400fbe <phase_3+123>
+   0x0000000000400f91 <+78>:    mov    $0x185,%eax
+   0x0000000000400f96 <+83>:    jmp    0x400fbe <phase_3+123>
+   0x0000000000400f98 <+85>:    mov    $0xce,%eax
+   0x0000000000400f9d <+90>:    jmp    0x400fbe <phase_3+123>
+   0x0000000000400f9f <+92>:    mov    $0x2aa,%eax
+   0x0000000000400fa4 <+97>:    jmp    0x400fbe <phase_3+123>
+   0x0000000000400fa6 <+99>:    mov    $0x147,%eax
+   0x0000000000400fab <+104>:   jmp    0x400fbe <phase_3+123>
+   0x0000000000400fad <+106>:   callq  0x40143a <explode_bomb>
+   0x0000000000400fb2 <+111>:   mov    $0x0,%eax
+   0x0000000000400fb7 <+116>:   jmp    0x400fbe <phase_3+123>
+   0x0000000000400fb9 <+118>:   mov    $0x137,%eax
+   0x0000000000400fbe <+123>:   cmp    0xc(%rsp),%eax
+   0x0000000000400fc2 <+127>:   je     0x400fc9 <phase_3+134>
+   0x0000000000400fc4 <+129>:   callq  0x40143a <explode_bomb>
+   0x0000000000400fc9 <+134>:   add    $0x18,%rsp
+   0x0000000000400fcd <+138>:   retq   
+
+
+   Dump of assembler code for function phase_4:
+   0x000000000040100c <+0>:     sub    $0x18,%rsp
+   0x0000000000401010 <+4>:     lea    0xc(%rsp),%rcx
+   0x0000000000401015 <+9>:     lea    0x8(%rsp),%rdx
+   0x000000000040101a <+14>:    mov    $0x4025cf,%esi
+   0x000000000040101f <+19>:    mov    $0x0,%eax
+   0x0000000000401024 <+24>:    callq  0x400bf0 <__isoc99_sscanf@plt>
+   0x0000000000401029 <+29>:    cmp    $0x2,%eax
+   0x000000000040102c <+32>:    jne    0x401035 <phase_4+41>
+   0x000000000040102e <+34>:    cmpl   $0xe,0x8(%rsp)
+   0x0000000000401033 <+39>:    jbe    0x40103a <phase_4+46>
+   0x0000000000401035 <+41>:    callq  0x40143a <explode_bomb>
+   0x000000000040103a <+46>:    mov    $0xe,%edx    edx=14
+   0x000000000040103f <+51>:    mov    $0x0,%esi    esi=0
+   0x0000000000401044 <+56>:    mov    0x8(%rsp),%edi edi=nums[0]
+   0x0000000000401048 <+60>:    callq  0x400fce <func4>
+   0x000000000040104d <+65>:    test   %eax,%eax
+   0x000000000040104f <+67>:    jne    0x401058 <phase_4+76>
+   0x0000000000401051 <+69>:    cmpl   $0x0,0xc(%rsp)
+   0x0000000000401056 <+74>:    je     0x40105d <phase_4+81>
+   0x0000000000401058 <+76>:    callq  0x40143a <explode_bomb>
+   0x000000000040105d <+81>:    add    $0x18,%rsp
+   0x0000000000401061 <+85>:    retq   
+
+   (gdb) disas func4
+Dump of assembler code for function func4:
+   0x0000000000400fce <+0>:     sub    $0x8,%rsp
+=> 0x0000000000400fd2 <+4>:     mov    %edx,%eax
+   0x0000000000400fd4 <+6>:     sub    %esi,%eax
+   0x0000000000400fd6 <+8>:     mov    %eax,%ecx
+   0x0000000000400fd8 <+10>:    shr    $0x1f,%ecx
+   0x0000000000400fdb <+13>:    add    %ecx,%eax
+   0x0000000000400fdd <+15>:    sar    %eax
+   0x0000000000400fdf <+17>:    lea    (%rax,%rsi,1),%ecx
+   0x0000000000400fe2 <+20>:    cmp    %edi,%ecx
+   0x0000000000400fe4 <+22>:    jle    0x400ff2 <func4+36>
+   0x0000000000400fe6 <+24>:    lea    -0x1(%rcx),%edx
+   0x0000000000400fe9 <+27>:    callq  0x400fce <func4>
+   0x0000000000400fee <+32>:    add    %eax,%eax
+   0x0000000000400ff0 <+34>:    jmp    0x401007 <func4+57>
+   0x0000000000400ff2 <+36>:    mov    $0x0,%eax
+   0x0000000000400ff7 <+41>:    cmp    %edi,%ecx
+   0x0000000000400ff9 <+43>:    jge    0x401007 <func4+57>
+   0x0000000000400ffb <+45>:    lea    0x1(%rcx),%esi
+   0x0000000000400ffe <+48>:    callq  0x400fce <func4>
+
+   0x0000000000401003 <+53>:    lea    0x1(%rax,%rax,1),%eax
+   0x0000000000401007 <+57>:    add    $0x8,%rsp
+   0x000000000040100b <+61>:    retq   
