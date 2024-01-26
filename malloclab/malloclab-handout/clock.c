@@ -15,7 +15,7 @@
 
 /******************************************************* 
  * Machine dependent functions 
- *
+ *test
  * Note: the constants __i386__ and  __alpha
  * are set by GCC when it calls the C preprocessor
  * You can verify this for yourself using gcc -v.
