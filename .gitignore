@@ -53,3 +53,4 @@ dkms.conf
 
 #Clion
 cmake-build-debug/
+testcode/

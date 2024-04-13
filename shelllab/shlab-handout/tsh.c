@@ -12,6 +12,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <errno.h>
+#include "ErrorHandle.h"
 
 /* Misc manifest constants */
 #define MAXLINE    1024   /* max line size */
@@ -165,6 +166,43 @@ int main(int argc, char **argv)
 */
 void eval(char *cmdline) 
 {
+    char *argv[MAXARGS]; /* Argument list execve() */
+    CHAR buf[MAXLINE]; /* Holds modified command line */
+    int bg; /* Should the job run in bg or fg? */
+    pid_t pid; /* Process id */
+    int state; /* State of the job */
+
+    strcpy(buf,cmdline);
+    bg=parseline(buf,argv);
+    state=bg?BG:FG;
+    if(argv[0]==NULL)
+        return; /* Ignore empty lines */
+    sigset_t mask_all,mask_one,prev_one,prev_all;
+    Sigfillset(&mask_all);
+    Sigemptyset(&mask_one);
+    Sigaddset(&mask_one, SIGCHLD);
+    if(!builtin_cmd(argv)) {                            //判断是否为内置命令
+        Sigprocmask(SIG_BLOCK, &mask_one, &prev_one);       //fork前阻塞SIGCHLD信号
+        if((pid = Fork()) == 0) {						    //创建子进程
+            Sigprocmask(SIG_SETMASK, &prev_one, NULL);      //解除子进程的阻塞
+            Setpgid(0, 0);                                  //创建新进程组，ID设置为进程PID
+            Execve(argv[0], argv, environ);                 //执行
+            exit(0);                                        //子线程执行完毕后一定要退出
+        }
+        if(state==FG){
+            Sigprocmask(SIG_BLOCK, &mask_all, NULL);            //添加工作前阻塞所有信号
+            addjob(jobs, pid, state, cmdline);                  //添加至作业列表
+            Sigprocmask(SIG_SETMASK, &mask_one, NULL);
+            waitfg(pid);                                        //等待前台进程执行完毕
+        }
+        else{
+            Sigprocmask(SIG_BLOCK, &mask_all, NULL);            //添加工作前阻塞所有信号
+            addjob(jobs, pid, state, cmdline);                  //添加至作业列表
+            Sigprocmask(SIG_SETMASK, &mask_one, NULL);
+            printf("[%d] (%d) %s",pid2jid(pid), pid, cmdline);  //打印后台进程信息
+        }
+        Sigprocmask(SIG_SETMASK, &prev_one, NULL);          //解除阻塞
+    }
     return;
 }
 

@@ -44,4 +44,4 @@ add_executable(CSAPP_Labs
         shelllab/shlab-handout/myspin.c
         shelllab/shlab-handout/mysplit.c
         shelllab/shlab-handout/mystop.c
-        shelllab/shlab-handout/tsh.c)
+        shelllab/shlab-handout/tsh.c shelllab/shlab-handout/ErrorHandle.cpp shelllab/shlab-handout/ErrorHandle.h testcode/test.cpp)

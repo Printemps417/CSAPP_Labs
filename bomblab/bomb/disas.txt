@@ -197,7 +197,7 @@ Dump of assembler code for function phase_2:
    0x0000000000400fc9 <+134>:   add    $0x18,%rsp
    0x0000000000400fcd <+138>:   retq   
 
-
+炸弹4：
    Dump of assembler code for function phase_4:
    0x000000000040100c <+0>:     sub    $0x18,%rsp
    0x0000000000401010 <+4>:     lea    0xc(%rsp),%rcx
@@ -246,4 +246,30 @@ Dump of assembler code for function func4:
 
    0x0000000000401003 <+53>:    lea    0x1(%rax,%rax,1),%eax
    0x0000000000401007 <+57>:    add    $0x8,%rsp
-   0x000000000040100b <+61>:    retq   
+   0x000000000040100b <+61>:    retq
+
+
+   Dump of assembler code for function phase_5:
+      0x0000000000401062 <+0>:     push   %rbx
+      0x0000000000401063 <+1>:     sub    $0x20,%rsp
+      0x0000000000401067 <+5>:     mov    %rdi,%rbx
+      0x000000000040106a <+8>:     mov    %fs:0x28,%rax
+      0x0000000000401073 <+17>:    mov    %rax,0x18(%rsp)
+      0x0000000000401078 <+22>:    xor    %eax,%eax
+      0x000000000040107a <+24>:    call   0x40131b <string_length>
+      0x000000000040107f <+29>:    cmp    $0x6,%eax
+      0x0000000000401082 <+32>:    je     0x4010d2 <phase_5+112>
+   --Type <RET> for more, q to quit, c to continue without paging--
+      0x0000000000401084 <+34>:    call   0x40143a <explode_bomb>
+      0x0000000000401089 <+39>:    jmp    0x4010d2 <phase_5+112>
+      0x000000000040108b <+41>:    movzbl (%rbx,%rax,1),%ecx
+      0x00000000004010d2 <+112>:   mov    $0x0,%eax
+      0x00000000004010d7 <+117>:   jmp    0x40108b <phase_5+41>
+      0x00000000004010d9 <+119>:   mov    0x18(%rsp),%rax
+      0x00000000004010de <+124>:   xor    %fs:0x28,%rax
+      0x00000000004010e7 <+133>:   je     0x4010ee <phase_5+140>
+      0x00000000004010e9 <+135>:   call   0x400b30 <__stack_chk_fail@plt>
+      0x00000000004010ee <+140>:   add    $0x20,%rsp
+      0x00000000004010f2 <+144>:   pop    %rbx
+      0x00000000004010f3 <+145>:   ret
+   End of assembler dump.
